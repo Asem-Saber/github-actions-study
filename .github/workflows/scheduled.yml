@@ -1,6 +1,6 @@
 on: 
   schedule: 
-    - corn: "0 0 * * *"
+    - cron: "0 0 * * *"
 
 jobs: 
   daily-task: 
