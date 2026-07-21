@@ -1,0 +1,10 @@
+on: 
+  schedule: 
+    - corn: "0 0 * * *"
+
+jobs: 
+  daily-task: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Print message
+        run: echo "Hello, this is a scheduled task!"      
