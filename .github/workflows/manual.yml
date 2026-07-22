@@ -1,5 +1,5 @@
-on: 
-   workflow_dispatch:
+on: # This allows us to run the workflow manually using github gui or github cli
+   workflow_dispatch: 
      inputs:
         environment: 
           description: "Choose environment"
