@@ -1,7 +1,24 @@
 on: 
     repository_dispatch:
-        types: [incident_report]
+        # to trigger this workflow from GitHub api using curl
+        # example curl command:
+        # curl -X POST \
+        #   -H "Authorization: token $env:GITHUB_PAT" \
+        #   -H "Accept: application/vnd.github.v3+json" \
+        #   https://api.github.com/repos/Asem-Saber/github-actions-study/dispatches \
+        #   -d '{"event_type": "incident_report"}'
 
+        # example using powershell 
+        # $headers = @{
+        # "Authorization" = "token $env:GITHUB_PAT"
+        # "Accept" = "application/vnd.github.v3+json"
+        # }
+        # $body = '{"event_type": "incident_report"}'
+        # Invoke-RestMethod -Uri "https://api.github.com/repos/Asem-Saber/github-actions-study/dispatches" `
+        #           -Method Post `
+        #           -Headers $headers `
+        #           -Body $body
+        types: [incident_report]
 jobs:
     handle-incident:
         runs-on: ubuntu-latest
