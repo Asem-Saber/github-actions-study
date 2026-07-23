@@ -1,0 +1,12 @@
+on: 
+    workflow_dispatch:
+
+jobs:
+    first-job:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                npm install 
+                npm run build 
+              working-directory: ./temp
+              shell: bash # pwsh, cmd, powershell, python
