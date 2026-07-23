@@ -5,8 +5,12 @@ jobs:
     first-job:
         runs-on: ubuntu-latest
         steps:
-            - run: |
+            - name: Checkout code
+              uses: actions/checkout@v4
+              
+            - name: Run script 
+              run: |
                 npm install 
                 npm run build 
-              working-directory: ./temp
+              # working-directory: ./temp
               shell: bash # pwsh, cmd, powershell, python
