@@ -1,0 +1,26 @@
+on: 
+    workflow_dispatch:
+
+jobs:
+    first-job:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Job ${{ github.job }} is running on ${{ runner.os }}"
+    
+    second-job:
+        runs-on: ubuntu-latest
+        needs: first-job
+        steps:
+            - run: echo "Job ${{ github.job }} is running on ${{ runner.os }}"
+
+    third-job:
+        runs-on: ubuntu-latest
+        needs: first-job
+        steps:
+            - run: echo "Job ${{ github.job }} is running on ${{ runner.os }}"
+
+    fourth-job:
+        runs-on: ubuntu-latest
+        needs: [second-job, third-job]
+        steps:
+            - run: echo "Job ${{ github.job }} is running on ${{ runner.os }}"
