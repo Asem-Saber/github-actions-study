@@ -1,0 +1,30 @@
+on: 
+    workflow_dispatch:
+
+jobs: 
+    test: 
+        strategy: 
+            fail-fast: false # Don't cancel on first failure (default true)
+            max-parallel: 3 # max number of parallel jobs (default Infinity)
+            matrix: 
+                os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+                node-version: ["20", "22", "24"] # This creates 3 x 3 = 9 parallel jobs!
+
+                include: # Add extra combinations or override existing values
+                    - os: ubuntu-latest
+                      node-version: "24"
+                      experimental: true # Custom variable
+
+                exclude: # Remove specific combos
+                    - os: macos-latest
+                      node-version: 20 # Don't test old Node on macOS
+                
+        runs-on: ${{ matrix.os }}
+        steps: 
+        - uses: actions/checkout@v7.0.1
+        - uses: actions/setup-node@v7.0.0
+          with: 
+            node-version: ${{ matrix.node-version }}
+        - run: npm ci
+        - run: npm test
+        - run: echo "Running on ${{ runner.os }} with Node ${{ matrix.node-version }}"
