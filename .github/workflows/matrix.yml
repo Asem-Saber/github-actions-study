@@ -1,3 +1,4 @@
+# Matrix Strategy — Run Jobs Across Combinations
 on: 
     workflow_dispatch:
 
@@ -25,6 +26,5 @@ jobs:
         - uses: actions/setup-node@v7.0.0
           with: 
             node-version: ${{ matrix.node-version }}
-        - run: npm ci
         - run: npm test
         - run: echo "Running on ${{ runner.os }} with Node ${{ matrix.node-version }}"
