@@ -13,12 +13,12 @@ jobs:
 
                 include: # Add extra combinations or override existing values
                     - os: ubuntu-latest
-                      node-version: "24"
+                      node-version: 24
                       experimental: true # Custom variable
 
                 exclude: # Remove specific combos
                     - os: macos-latest
-                      node-version: 20 # Don't test old Node on macOS
+                      node-version: 22 # Don't test old Node on macOS
                 
         runs-on: ${{ matrix.os }}
         steps: 
